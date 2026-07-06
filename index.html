@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurum & Co. | Premium Jewelry Showcase</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Custom Luxury Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-gray-200 min-h-screen overflow-x-hidden">
+
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-yellow-600/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="serif-font text-2xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-amber-400 to-yellow-500">
+                AURUM & CO.
+            </a>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium tracking-wider">
+                <a href="#hero" class="hover:text-amber-400 transition-colors">Home</a>
+                <a href="#showcase" class="hover:text-amber-400 transition-colors">Showcase</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-amber-400 focus:outline-none text-2xl">☰</button>
+            </div>
+        </div>
+    </header>
+
+   <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 px-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-950/20 via-neutral-950 to-neutral-950">
+        <!-- Dynamic Background Slider Container -->
+        <div id="hero-carousel" class="absolute inset-0 opacity-20 pointer-events-none overflow-hidden"></div>
+        
+        <!-- Hero Content Layer -->
+        <div class="max-w-4xl text-center z-10 animate-fade-in">
+            <span class="text-amber-400 font-medium tracking-widest text-xs uppercase block mb-4">Crafting Timeless Elegance</span>
+            <h1 class="serif-font text-4xl sm:text-6xl lg:text-7xl font-bold text-stone-100 leading-tight mb-6">
+                Pure Quality, <br><span class="italic text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-amber-300 to-yellow-600">Exquisite</span> Designs.
+            </h1>
+            <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto mb-8 font-light tracking-wide leading-relaxed">
+                Explore our curated collection of masterfully crafted Gold, Silver, and Artificial masterpieces tailored for your moments of celebration.
+            </p>
+            <a href="#showcase" class="inline-block border border-amber-400/50 hover:border-amber-400 text-amber-400 px-8 py-3 rounded-none text-xs font-semibold uppercase tracking-widest bg-amber-400/5 hover:bg-amber-400 hover:text-neutral-900 transition-all duration-300">
+                Explore Collection
+            </a>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section id="showcase" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="serif-font text-3xl sm:text-4xl font-semibold text-stone-100 tracking-wide">Our Signature Showcase</h2>
+            <div class="w-16 h-[2px] bg-amber-400 mx-auto mt-4"></div>
+        </div>
+
+        <!-- Dynamic Live Filtering Controls -->
+        <div class="flex flex-col gap-6 items-center justify-between border-b border-neutral-800 pb-8 mb-12">
+            <!-- Material Filter (Gold, Silver, Artificial) -->
+            <div class="flex flex-wrap justify-center gap-3" id="material-filters">
+                <button data-filter="all" class="filter-btn active-btn px-5 py-2 text-xs uppercase tracking-wider font-semibold border border-amber-400 bg-amber-400 text-neutral-950 transition-all duration-300">All Metals</button>
+                <button data-filter="gold" class="filter-btn px-5 py-2 text-xs uppercase tracking-wider font-semibold border border-neutral-800 text-gray-400 hover:text-amber-400 transition-all duration-300">Gold</button>
+                <button data-filter="silver" class="filter-btn px-5 py-2 text-xs uppercase tracking-wider font-semibold border border-neutral-800 text-gray-400 hover:text-amber-400 transition-all duration-300">Silver</button>
+                <button data-filter="artificial" class="filter-btn px-5 py-2 text-xs uppercase tracking-wider font-semibold border border-neutral-800 text-gray-400 hover:text-amber-400 transition-all duration-300">Artificial</button>
+            </div>
+            
+            <!-- Category Filter (Ring, Necklace, Bracelet) -->
+            <div class="flex flex-wrap justify-center gap-2" id="type-filters">
+                <button data-type="all" class="type-btn text-amber-400 border-b-2 border-amber-400 px-3 py-1 text-xs uppercase tracking-widest font-medium">All Jewelry</button>
+                <button data-type="ring" class="type-btn text-gray-400 hover:text-amber-400 border-b-2 border-transparent px-3 py-1 text-xs uppercase tracking-widest font-medium transition-colors">Rings</button>
+                <button data-type="necklace" class="type-btn text-gray-400 hover:text-amber-400 border-b-2 border-transparent px-3 py-1 text-xs uppercase tracking-widest font-medium transition-colors">Necklaces</button>
+                <button data-type="bracelet" class="type-btn text-gray-400 hover:text-amber-400 border-b-2 border-transparent px-3 py-1 text-xs uppercase tracking-widest font-medium transition-colors">Bracelets</button>
+            </div>
+        </div>
+
+        <!-- Product Grid Container (Populated by JavaScript) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="jewelry-grid"></div>
+    </section>
+
+    <!-- Detail Modal Popup -->
+    <div id="detail-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/90 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-neutral-900 border border-amber-400/30 max-w-3xl w-full rounded-none overflow-hidden grid grid-cols-1 md:grid-cols-2 shadow-2xl relative transform scale-95 transition-transform duration-300" id="modal-content">
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-amber-400 text-2xl z-10 focus:outline-none">✕</button>
+            <div class="h-64 md:h-full bg-neutral-800">
+                <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="p-8 flex flex-col justify-center">
+                <span id="modal-tag" class="text-xs font-semibold tracking-widest text-amber-400 uppercase mb-2"></span>
+                <h3 id="modal-title" class="serif-font text-2xl font-bold text-stone-100 mb-4"></h3>
+                <p id="modal-desc" class="text-gray-400 text-sm leading-relaxed mb-6"></p>
+                <div class="border-t border-neutral-800 pt-4">
+                    <h4 class="text-xs uppercase font-semibold text-amber-400/80 tracking-wider mb-2">Purity & Quality Assurance</h4>
+                    <p id="modal-quality" class="text-xs text-gray-400 font-mono"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-neutral-900 bg-neutral-950 py-8 text-center text-xs text-neutral-600 tracking-wider">
+        &copy; 2026 Aurum & Co. Bespoke Luxury Jewelry Showcase. Built to shine.
+        <div>
+            &copy;website designer: Tarun Kesharwani
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript Logic Link -->
+    <script src="script.js"></script>
+</body>
+</html>
